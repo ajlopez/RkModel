@@ -40,3 +40,19 @@ exports['set and get nested simple property'] = function (test) {
     test.equal(model.get('adam').get('name'), 'Adam');
 }
 
+exports['load object'] = function (test) {
+    var model = rkmodel();
+    
+    model.loadObject({ persons: {
+            adam: { name: 'Adam', age: 800 },
+            eve: { name: 'Eve', age: 700 }
+        }
+    });
+    
+    test.equal(model.get('persons').get('adam').get('name'), 'Adam');
+    test.equal(model.get('persons').get('adam').get('age'), 800);
+    test.equal(model.get('persons').get('eve').get('name'), 'Eve');
+    test.equal(model.get('persons').get('eve').get('age'), 700);
+}
+
+
