@@ -15,6 +15,20 @@ exports['on set simple property'] = function (test) {
     model.set('name', 'Adam');
 };
 
+exports['on set nested property property using dot notation'] = function (test) {
+    test.async();
+    
+    var model = rkmodel();
+    
+    model.on('set', 'persons.adam.name', function (newvalue, oldvalue) {
+        test.equal(newvalue, 'Adam');
+        test.equal(oldvalue, undefined);
+        test.done();
+    });
+    
+    model.set('persons.adam.name', 'Adam');
+};
+
 exports['on set simple property two listeners'] = function (test) {
     test.async();
     
