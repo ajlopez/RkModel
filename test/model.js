@@ -40,6 +40,13 @@ exports['set and get nested simple property'] = function (test) {
     test.equal(model.get('adam').get('name'), 'Adam');
 }
 
+exports['set and get nested simple property using dot notation'] = function (test) {
+    var model = rkmodel();
+    
+    model.set('persons.adam.name', 'Adam');
+    test.equal(model.get('persons.adam.name'), 'Adam');
+}
+
 exports['load object'] = function (test) {
     var model = rkmodel();
     
