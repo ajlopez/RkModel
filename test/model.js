@@ -16,3 +16,11 @@ exports['set and get simple property'] = function (test) {
     test.equal(model.get('name'), 'Adam');
 }
 
+exports['set and get nested simple property'] = function (test) {
+    var model = rkmodel();
+    
+    model.get('adam').set('name', 'Adam');
+
+    test.equal(model.get('adam').get('name'), 'Adam');
+}
+
