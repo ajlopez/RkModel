@@ -55,4 +55,20 @@ exports['load object'] = function (test) {
     test.equal(model.get('persons').get('eve').get('age'), 700);
 }
 
+exports['to object'] = function (test) {
+    var model = rkmodel();
+
+    var obj = { persons: {
+            adam: { name: 'Adam', age: 800 },
+            eve: { name: 'Eve', age: 700 }
+        }
+    };
+    
+    model.loadObject(obj);
+    
+    var result = model.toObject();
+    
+    test.deepEqual(result, obj);
+}
+
 
