@@ -8,3 +8,11 @@ exports['create model'] = function (test) {
     test.equal(typeof model, 'object');
 }
 
+exports['set and get simple property'] = function (test) {
+    var model = rkmodel();
+    
+    model.set('name', 'Adam');
+
+    test.equal(model.get('name'), 'Adam');
+}
+
