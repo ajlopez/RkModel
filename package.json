@@ -4,7 +4,7 @@
 , "version": "0.0.1alpha"
 , "author": "Angel 'Java' Lopez <webmaster@ajlopez.com> (http://www.ajlopez.com)"
 , "repository": { "type": "git", "url": "git://github.com/ajlopez/RkModel.git" }
-, "main": "./lib/elixir.js"
+, "main": "./lib/rkmodel.js"
 , "engines": { "node": ">= 0.6.0 && < 0.13.0" }
 , "scripts": {
     "test": "simpleunit test"
