@@ -8,6 +8,22 @@ exports['create model'] = function (test) {
     test.equal(typeof model, 'object');
 }
 
+exports['has on undefined property'] = function (test) {
+    var model = rkmodel();
+
+    test.strictEqual(model.has('name'), false);
+    test.strictEqual(model.has('age'), false);
+}
+
+exports['has defined property'] = function (test) {
+    var model = rkmodel();
+    
+    model.set('name', 'Adam');
+
+    test.strictEqual(model.has('name'), true);
+    test.strictEqual(model.has('age'), false);
+}
+
 exports['set and get simple property'] = function (test) {
     var model = rkmodel();
     
