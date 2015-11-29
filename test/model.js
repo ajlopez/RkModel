@@ -24,6 +24,15 @@ exports['has defined property'] = function (test) {
     test.strictEqual(model.has('age'), false);
 }
 
+exports['has defined property using dot notation'] = function (test) {
+    var model = rkmodel();
+    
+    model.set('persons.adam.name', 'Adam');
+
+    test.strictEqual(model.has('persons.adam.name'), true);
+    test.strictEqual(model.has('persons.adam.age'), false);
+}
+
 exports['remove defined property'] = function (test) {
     var model = rkmodel();
     
