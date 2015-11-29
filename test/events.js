@@ -78,3 +78,17 @@ exports['set simple property twice'] = function (test) {
     model.set('name', 'Adam');
     model.set('name', 'Eve');
 };
+
+exports['on create simple property'] = function (test) {
+    test.async();
+    
+    var model = rkmodel();
+    
+    model.on('create', 'name', function (value) {
+        test.equal(value, 'Adam');
+        test.done();
+    });
+    
+    model.set('name', 'Adam');
+};
+
