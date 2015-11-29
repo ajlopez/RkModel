@@ -133,4 +133,22 @@ exports['on remove simple property using dot notation'] = function (test) {
     model.remove('persons.adam.name');
 };
 
+exports['on add item to array'] = function (test) {
+    test.async();
+    
+    var model = rkmodel();
+    
+    var count = 0;
+    
+    model.on('addi', 'values', function (item) {
+        count += item;
+        
+        if (count == 6)
+            test.done();
+    });
+    
+    model.add('values', 1);
+    model.add('values', 2);
+    model.add('values', 3);
+};
 
