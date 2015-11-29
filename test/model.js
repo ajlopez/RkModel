@@ -24,6 +24,15 @@ exports['has defined property'] = function (test) {
     test.strictEqual(model.has('age'), false);
 }
 
+exports['remove defined property'] = function (test) {
+    var model = rkmodel();
+    
+    model.set('name', 'Adam');
+    model.remove('name');
+
+    test.strictEqual(model.has('name'), false);
+}
+
 exports['set and get simple property'] = function (test) {
     var model = rkmodel();
     
