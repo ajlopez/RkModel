@@ -152,3 +152,23 @@ exports['on add item to array'] = function (test) {
     model.add('values', 3);
 };
 
+exports['on add item to array using dot notation'] = function (test) {
+    test.async();
+    
+    var model = rkmodel();
+    
+    var count = 0;
+    
+    model.on('addi', 'magnitude.values', function (item) {
+        count += item;
+        
+        if (count == 6)
+            test.done();
+    });
+    
+    model.add('magnitude.values', 1);
+    model.add('magnitude.values', 2);
+    model.add('magnitude.values', 3);
+};
+
+
