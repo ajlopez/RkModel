@@ -104,4 +104,17 @@ exports['to object'] = function (test) {
     test.deepEqual(result, obj);
 }
 
-
+exports['add items to array'] = function (test) {
+    var model = rkmodel();
+    
+    model.add('values', 1);
+    model.add('values', 2);
+    model.add('values', 3);
+    
+    var result = model.get('values');
+    
+    test.ok(result);
+    test.ok(Array.isArray(result));
+    test.equal(result.length, 3);
+    test.deepEqual(result, [ 1, 2, 3 ]);
+}
