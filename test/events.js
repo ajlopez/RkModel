@@ -171,4 +171,41 @@ exports['on add item to array using dot notation'] = function (test) {
     model.add('magnitude.values', 3);
 };
 
+exports['on extract item from array'] = function (test) {
+    test.async();
+    
+    var model = rkmodel();
+    
+    var count = 0;
+    
+    model.on('extracti', 'values', function (item) {
+        test.equal(item, 2);
+        test.done();
+    });
+    
+    model.add('values', 1);
+    model.add('values', 2);
+    model.add('values', 3);
+    
+    model.extract('values', 1);
+};
+
+exports['on extract item from array using dot notation'] = function (test) {
+    test.async();
+    
+    var model = rkmodel();
+    
+    var count = 0;
+    
+    model.on('extracti', 'magnitude.values', function (item) {
+        test.equal(item, 2);
+        test.done();
+    });
+    
+    model.add('magnitude.values', 1);
+    model.add('magnitude.values', 2);
+    model.add('magnitude.values', 3);
+
+    model.extract('magnitude.values', 1);
+};
 
