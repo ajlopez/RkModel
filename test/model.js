@@ -33,6 +33,14 @@ exports['remove defined property'] = function (test) {
     test.strictEqual(model.has('name'), false);
 }
 
+exports['remove defined property using dot notation'] = function (test) {
+    var model = rkmodel();
+    
+    model.set('persons.adam.name', 'Adam');
+    model.remove('persons.adam.name');
+
+    test.strictEqual(model.has('persons.adam.name'), false);
+}
 exports['set and get simple property'] = function (test) {
     var model = rkmodel();
     
