@@ -133,3 +133,37 @@ exports['add items to array using dot notation'] = function (test) {
     test.equal(result.length, 3);
     test.deepEqual(result, [ 1, 2, 3 ]);
 }
+
+exports['extract item from array'] = function (test) {
+    var model = rkmodel();
+    
+    model.add('values', 1);
+    model.add('values', 2);
+    model.add('values', 3);
+    
+    model.extract('values', 1);
+    
+    var result = model.get('values');
+    
+    test.ok(result);
+    test.ok(Array.isArray(result));
+    test.equal(result.length, 2);
+    test.deepEqual(result, [ 1, 3 ]);
+}
+
+exports['extract item from array using dot notation'] = function (test) {
+    var model = rkmodel();
+    
+    model.add('magnitude.values', 1);
+    model.add('magnitude.values', 2);
+    model.add('magnitude.values', 3);
+    
+    model.extract('magnitude.values', 1);
+    
+    var result = model.get('magnitude.values');
+    
+    test.ok(result);
+    test.ok(Array.isArray(result));
+    test.equal(result.length, 2);
+    test.deepEqual(result, [ 1, 3 ]);
+}
