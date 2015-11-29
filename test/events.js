@@ -209,3 +209,17 @@ exports['on extract item from array using dot notation'] = function (test) {
     model.extract('magnitude.values', 1);
 };
 
+exports['on set any property'] = function (test) {
+    test.async();
+    
+    var model = rkmodel();
+    
+    model.on('setp', function (name, newvalue, oldvalue) {
+        test.equal(name, 'name');
+        test.strictEqual(oldvalue, undefined);
+        test.strictEqual(newvalue, 'Adam');
+        test.done();
+    });
+    
+    model.set('name', 'Adam');
+};
