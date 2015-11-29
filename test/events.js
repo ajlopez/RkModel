@@ -92,3 +92,17 @@ exports['on create simple property'] = function (test) {
     model.set('name', 'Adam');
 };
 
+exports['on create simple property using dot notation'] = function (test) {
+    test.async();
+    
+    var model = rkmodel();
+    
+    model.on('create', 'persons.adam.name', function (value) {
+        test.equal(value, 'Adam');
+        test.done();
+    });
+    
+    model.set('persons.adam.name', 'Adam');
+};
+
+
