@@ -105,4 +105,32 @@ exports['on create simple property using dot notation'] = function (test) {
     model.set('persons.adam.name', 'Adam');
 };
 
+exports['on remove simple property'] = function (test) {
+    test.async();
+    
+    var model = rkmodel();
+    
+    model.on('remove', 'name', function (value) {
+        test.equal(value, 'Adam');
+        test.done();
+    });
+    
+    model.set('name', 'Adam');
+    model.remove('name');
+};
+
+exports['on remove simple property using dot notation'] = function (test) {
+    test.async();
+    
+    var model = rkmodel();
+    
+    model.on('remove', 'persons.adam.name', function (value) {
+        test.equal(value, 'Adam');
+        test.done();
+    });
+    
+    model.set('persons.adam.name', 'Adam');
+    model.remove('persons.adam.name');
+};
+
 
