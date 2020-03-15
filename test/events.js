@@ -1,10 +1,10 @@
 
-var rkmodel = require('..');
+const rkmodel = require('..');
 
 exports['on set simple property'] = function (test) {
     test.async();
     
-    var model = rkmodel();
+    const model = rkmodel.model();
     
     model.on('set', 'name', function (newvalue, oldvalue) {
         test.equal(newvalue, 'Adam');
@@ -18,7 +18,7 @@ exports['on set simple property'] = function (test) {
 exports['on set nested property property using dot notation'] = function (test) {
     test.async();
     
-    var model = rkmodel();
+    const model = rkmodel.model();
     
     model.on('set', 'persons.adam.name', function (newvalue, oldvalue) {
         test.equal(newvalue, 'Adam');
@@ -32,9 +32,9 @@ exports['on set nested property property using dot notation'] = function (test) 
 exports['on set simple property two listeners'] = function (test) {
     test.async();
     
-    var model = rkmodel();
+    const model = rkmodel.model();
     
-    var count = 0;
+    let count = 0;
     
     model.on('set', 'name', function (newvalue, oldvalue) {
         test.equal(newvalue, 'Adam');
@@ -56,8 +56,8 @@ exports['on set simple property two listeners'] = function (test) {
 exports['set simple property twice'] = function (test) {
     test.async();
     
-    var model = rkmodel();
-    var count = 0;
+    const model = rkmodel.model();
+    let count = 0;
     
     model.on('set', 'name', function (newvalue, oldvalue) {
         if (newvalue === 'Adam') {
@@ -82,7 +82,7 @@ exports['set simple property twice'] = function (test) {
 exports['on create simple property'] = function (test) {
     test.async();
     
-    var model = rkmodel();
+    const model = rkmodel.model();
     
     model.on('create', 'name', function (value) {
         test.equal(value, 'Adam');
@@ -95,7 +95,7 @@ exports['on create simple property'] = function (test) {
 exports['on create simple property using dot notation'] = function (test) {
     test.async();
     
-    var model = rkmodel();
+    const model = rkmodel.model();
     
     model.on('create', 'persons.adam.name', function (value) {
         test.equal(value, 'Adam');
@@ -108,7 +108,7 @@ exports['on create simple property using dot notation'] = function (test) {
 exports['on remove simple property'] = function (test) {
     test.async();
     
-    var model = rkmodel();
+    const model = rkmodel.model();
     
     model.on('remove', 'name', function (value) {
         test.equal(value, 'Adam');
@@ -122,7 +122,7 @@ exports['on remove simple property'] = function (test) {
 exports['on remove simple property using dot notation'] = function (test) {
     test.async();
     
-    var model = rkmodel();
+    const model = rkmodel.model();
     
     model.on('remove', 'persons.adam.name', function (value) {
         test.equal(value, 'Adam');
@@ -136,9 +136,9 @@ exports['on remove simple property using dot notation'] = function (test) {
 exports['on add item to array'] = function (test) {
     test.async();
     
-    var model = rkmodel();
+    const model = rkmodel.model();
     
-    var count = 0;
+    let count = 0;
     
     model.on('addi', 'values', function (item) {
         count += item;
@@ -155,9 +155,9 @@ exports['on add item to array'] = function (test) {
 exports['on add item to array using dot notation'] = function (test) {
     test.async();
     
-    var model = rkmodel();
+    const model = rkmodel.model();
     
-    var count = 0;
+    let count = 0;
     
     model.on('addi', 'magnitude.values', function (item) {
         count += item;
@@ -174,9 +174,7 @@ exports['on add item to array using dot notation'] = function (test) {
 exports['on extract item from array'] = function (test) {
     test.async();
     
-    var model = rkmodel();
-    
-    var count = 0;
+    const model = rkmodel.model();
     
     model.on('extracti', 'values', function (item) {
         test.equal(item, 2);
@@ -193,9 +191,7 @@ exports['on extract item from array'] = function (test) {
 exports['on extract item from array using dot notation'] = function (test) {
     test.async();
     
-    var model = rkmodel();
-    
-    var count = 0;
+    const model = rkmodel.model();
     
     model.on('extracti', 'magnitude.values', function (item) {
         test.equal(item, 2);
@@ -212,7 +208,7 @@ exports['on extract item from array using dot notation'] = function (test) {
 exports['on set any property'] = function (test) {
     test.async();
     
-    var model = rkmodel();
+    const model = rkmodel.model();
     
     model.on('setp', function (name, newvalue, oldvalue) {
         test.equal(name, 'name');
@@ -223,3 +219,4 @@ exports['on set any property'] = function (test) {
     
     model.set('name', 'Adam');
 };
+

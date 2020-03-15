@@ -2,21 +2,21 @@
 var rkmodel = require('..');
 
 exports['create model'] = function (test) {
-    var model = rkmodel();
+    const model = rkmodel.model();
     
     test.ok(model);
     test.equal(typeof model, 'object');
 }
 
 exports['has on undefined property'] = function (test) {
-    var model = rkmodel();
+    const model = rkmodel.model();
 
     test.strictEqual(model.has('name'), false);
     test.strictEqual(model.has('age'), false);
 }
 
 exports['has defined property'] = function (test) {
-    var model = rkmodel();
+    const model = rkmodel.model();
     
     model.set('name', 'Adam');
 
@@ -25,7 +25,7 @@ exports['has defined property'] = function (test) {
 }
 
 exports['has defined property using dot notation'] = function (test) {
-    var model = rkmodel();
+    var model = rkmodel.model();
     
     model.set('persons.adam.name', 'Adam');
 
@@ -34,7 +34,7 @@ exports['has defined property using dot notation'] = function (test) {
 }
 
 exports['remove defined property'] = function (test) {
-    var model = rkmodel();
+    const model = rkmodel.model();
     
     model.set('name', 'Adam');
     model.remove('name');
@@ -43,7 +43,7 @@ exports['remove defined property'] = function (test) {
 }
 
 exports['remove defined property using dot notation'] = function (test) {
-    var model = rkmodel();
+    var model = rkmodel.model();
     
     model.set('persons.adam.name', 'Adam');
     model.remove('persons.adam.name');
@@ -51,7 +51,7 @@ exports['remove defined property using dot notation'] = function (test) {
     test.strictEqual(model.has('persons.adam.name'), false);
 }
 exports['set and get simple property'] = function (test) {
-    var model = rkmodel();
+    var model = rkmodel.model();
     
     model.set('name', 'Adam');
 
@@ -59,7 +59,7 @@ exports['set and get simple property'] = function (test) {
 }
 
 exports['set and get nested simple property'] = function (test) {
-    var model = rkmodel();
+    const model = rkmodel.model();
     
     model.get('adam').set('name', 'Adam');
 
@@ -67,14 +67,14 @@ exports['set and get nested simple property'] = function (test) {
 }
 
 exports['set and get nested simple property using dot notation'] = function (test) {
-    var model = rkmodel();
+    const model = rkmodel.model();
     
     model.set('persons.adam.name', 'Adam');
     test.equal(model.get('persons.adam.name'), 'Adam');
 }
 
 exports['load object'] = function (test) {
-    var model = rkmodel();
+    const model = rkmodel.model();
     
     model.loadObject({ persons: {
             adam: { name: 'Adam', age: 800 },
@@ -89,9 +89,9 @@ exports['load object'] = function (test) {
 }
 
 exports['to object'] = function (test) {
-    var model = rkmodel();
+    const model = rkmodel.model();
 
-    var obj = { persons: {
+    const obj = { persons: {
             adam: { name: 'Adam', age: 800 },
             eve: { name: 'Eve', age: 700 }
         }
@@ -99,13 +99,13 @@ exports['to object'] = function (test) {
     
     model.loadObject(obj);
     
-    var result = model.toObject();
+    const result = model.toObject();
     
     test.deepEqual(result, obj);
 }
 
 exports['add items to array'] = function (test) {
-    var model = rkmodel();
+    const model = rkmodel.model();
     
     model.add('values', 1);
     model.add('values', 2);
@@ -120,13 +120,13 @@ exports['add items to array'] = function (test) {
 }
 
 exports['add items to array using dot notation'] = function (test) {
-    var model = rkmodel();
+    const model = rkmodel.model();
     
     model.add('magnitude.values', 1);
     model.add('magnitude.values', 2);
     model.add('magnitude.values', 3);
     
-    var result = model.get('magnitude.values');
+    const result = model.get('magnitude.values');
     
     test.ok(result);
     test.ok(Array.isArray(result));
@@ -135,7 +135,7 @@ exports['add items to array using dot notation'] = function (test) {
 }
 
 exports['extract item from array'] = function (test) {
-    var model = rkmodel();
+    const model = rkmodel.model();
     
     model.add('values', 1);
     model.add('values', 2);
@@ -143,7 +143,7 @@ exports['extract item from array'] = function (test) {
     
     model.extract('values', 1);
     
-    var result = model.get('values');
+    const result = model.get('values');
     
     test.ok(result);
     test.ok(Array.isArray(result));
@@ -152,7 +152,7 @@ exports['extract item from array'] = function (test) {
 }
 
 exports['extract item from array using dot notation'] = function (test) {
-    var model = rkmodel();
+    const model = rkmodel.model();
     
     model.add('magnitude.values', 1);
     model.add('magnitude.values', 2);
@@ -160,10 +160,11 @@ exports['extract item from array using dot notation'] = function (test) {
     
     model.extract('magnitude.values', 1);
     
-    var result = model.get('magnitude.values');
+    const result = model.get('magnitude.values');
     
     test.ok(result);
     test.ok(Array.isArray(result));
     test.equal(result.length, 2);
     test.deepEqual(result, [ 1, 3 ]);
 }
+
